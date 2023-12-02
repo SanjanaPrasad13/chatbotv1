@@ -1,38 +1,56 @@
-.App {
+.containerStyle {
+  background-color: #F0F0F0; /* Light grey */
+}
+
+body {
+  font-family: 'Georgia', 'Verdana', sans-serif;
+}
+
+/* Chat Window and Header Styles */
+.main-paper {
+  display: flex;
+  flex-direction: column;
+  height: 90vh; /* Adjust the height as needed */
+}
+
+.header {
+  background-color: #57A0D3; /* Light blue */
+  padding: 20px;
+  text-align: center;
+  font-family: 'Georgia', 'Verdana', sans-serif;
+  z-index: 1;
+}
+
+.option:hover {
+  background-color: darkgrey; /* Change to desired hover effect color */
+}
+
+.options-header {
+  font-weight: bold;
+  padding: 9px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.options-panel {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding: 10px;
+  background-color: #f0f0f0;
+  overflow-y: auto; /* Scrollable options */
+  height: 100%;
+  margin-top: 10px;
 }
 
-.App-link {
-  color: #61dafb;
+.option {
+  padding: 10px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  margin-bottom: 10px; /* Space between options */
+  border-radius: 5px;
+  text-align: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.option.selected {
+  font-weight: bold;
+  background-color: #add8e6; /* Light blue to indicate selection */
 }

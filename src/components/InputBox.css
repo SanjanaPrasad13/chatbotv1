@@ -1,0 +1,68 @@
+/* InputBox.css */
+
+.input-box {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.input-field {
+  flex-grow: 1;
+  margin-right: 10px;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.send-icon {
+  cursor: pointer;
+  color: #4a90e2;
+}
+.input-box input {
+  height: 40px;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* App.css */
+
+.input-box {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: white; /* Or any other color that fits your design */
+}
+
+.input-field {
+  flex-grow: 1;
+  margin-right: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.send-button {
+  /* Styling for the send button if needed */
+}
+
+.options-container {
+  margin: 10px; /* Space for the header */
+}
+
+.option {
+  margin-bottom: 10px; /* Adds space between options */
+  /* Rest of the styles */
+}
+
+/* Add styles for the header above the options */
+.options-header {
+  padding: 10px;
+  font-weight: bold;
+}
