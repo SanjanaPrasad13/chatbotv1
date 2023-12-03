@@ -1,60 +1,3 @@
-/*.containerStyle {*/
-/*  background-color: #F0F0F0; !* Light grey *!*/
-/*}*/
-
-/*body {*/
-/*  font-family: 'Georgia', 'Verdana', sans-serif;*/
-/*}*/
-
-/*!* Chat Window and Header Styles *!*/
-/*.main-paper {*/
-/*  display: flex;*/
-/*  flex-direction: column;*/
-/*  height: 90vh; !* Adjust the height as needed *!*/
-/*}*/
-
-/*.header {*/
-/*  background-color: #57A0D3; !* Light blue *!*/
-/*  padding: 20px;*/
-/*  text-align: center;*/
-/*  font-family: 'Georgia', 'Verdana', sans-serif;*/
-/*  z-index: 1;*/
-/*}*/
-
-/*.option:hover {*/
-/*  background-color: darkgrey; !* Change to desired hover effect color *!*/
-/*}*/
-
-/*.options-header {*/
-/*  font-weight: bold;*/
-/*  padding: 9px;*/
-/*  text-align: center;*/
-/*}*/
-
-/*.options-panel {*/
-/*  display: flex;*/
-/*  flex-direction: column;*/
-/*  padding: 10px;*/
-/*  background-color: #f0f0f0;*/
-/*  overflow-y: auto; !* Scrollable options *!*/
-/*  height: 100%;*/
-/*  margin-top: 10px;*/
-/*}*/
-
-/*.option {*/
-/*  padding: 10px;*/
-/*  cursor: pointer;*/
-/*  border: 1px solid #ccc;*/
-/*  margin-bottom: 10px; !* Space between options *!*/
-/*  border-radius: 5px;*/
-/*  text-align: center;*/
-/*}*/
-
-/*.option.selected {*/
-/*  font-weight: bold;*/
-/*  background-color: #add8e6; !* Light blue to indicate selection *!*/
-/*}*/
-
 .containerStyle {
   background-color: #F8F9FA; /* A light grey background, similar to ChatGPT */
 }
@@ -72,14 +15,19 @@ body {
   background-color: #FFFFFF; /* White background for the chat area */
 }
 
-.header {
-  background-color: #4A4A4A; /* A darker grey for the header */
-  color: #FFFFFF; /* White text color */
+
+ .header {
+  position: fixed; /* Makes the header stay at the top of the page */
+  top: 0; /* Aligns the header to the top edge of the page */
+  left: 0;
+  right: 0;
+  background-color: #4A4A4A; /* Dark grey */
+  color: #FFFFFF; /* White text */
   padding: 20px;
   text-align: center;
-  font-family: 'Georgia', 'Verdana', sans-serif;
-  z-index: 1;
+  z-index: 1000; /* Ensures the header is above other content */
 }
+
 
 .option:hover {
   background-color: #B0BEC5; /* A lighter shade of grey for hover effect */
@@ -99,22 +47,27 @@ body {
   background-color: #ECEFF1; /* A light grey, similar to ChatGPT's sidebar */
   overflow-y: auto; /* Scrollable options */
   height: 100%;
-  margin-top: 10px;
+  margin-top: 80px;
 }
 
 .option {
   padding: 10px;
+  font-weight: bold;
   cursor: pointer;
   border: 1px solid #CFD8DC; /* Light grey border for options */
   margin-bottom: 10px; /* Space between options */
   border-radius: 5px;
   text-align: center;
   background-color: #FFFFFF; /* White background for options */
-  color: #455A64; /* Dark grey color for option text */
+  color: #4A4A4A; /* Dark grey color for option text */
 }
 
 .option.selected {
   font-weight: bold;
-  background-color: #2196F3; /* ChatGPT blue for selected option */
+  background-color: #4A4A4A;
   color: #FFFFFF; /* White text for selected option */
+}
+
+.chat-window {
+  margin-top: 60px; /* Add margin-top that is equal or greater than the header's height */
 }

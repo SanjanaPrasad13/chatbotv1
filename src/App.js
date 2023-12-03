@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import ChatWindow from './components/ChatWindow';
 import InputBox from './components/InputBox';
 import { Container, Paper, Typography, Grid } from '@mui/material';
@@ -15,15 +14,22 @@ const App = () => {
   const handleSendMessage = async (messageText) => {
     if (messageText.trim()) {
       const messagePayload = {
-        topic: currentOption,
-        message: messageText
+        "query_type": currentOption,
+        "question": messageText
       };
       setMessages(prevMessages => [...prevMessages, { text: messageText, sender: 'user' }]);
       setIsLoading(true);
 
       try {
-        const response = await axios.post('http://34.125.9.200:9999/execute_query', messagePayload);
-        setMessages(prevMessages => [...prevMessages, { text: response.data.text, sender: 'bot' }]);
+        const response = await fetch("http://34.125.9.200:9999/execute_query", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(messagePayload),
+        });
+        const data = await response.json()
+        setMessages(prevMessages => [...prevMessages, { text: data['answer'], sender: 'bot' }]);
       } catch (error) {
         console.error('Error:', error);
         setMessages(prevMessages => [...prevMessages, { text: 'Error fetching response', sender: 'bot' }]);
@@ -42,7 +48,7 @@ const App = () => {
     <Container maxWidth="xl" style={{ padding: 0 }}>
       <div className="header">
         <Typography variant="h4" align="center" style={{ color: 'white' }} fontFamily={"Georgia"}>
-          Team John Snow
+          Chatbot
         </Typography>
       </div>
       <Paper style={{ height: '100vh', display: 'flex', flexDirection: 'row' }}>
