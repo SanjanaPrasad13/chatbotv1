@@ -44,7 +44,7 @@ body {
   display: flex;
   flex-direction: column;
   padding: 10px;
-  background-color: #ECEFF1; /* A light grey, similar to ChatGPT's sidebar */
+  background-color: #ECEFF1;
   overflow-y: auto; /* Scrollable options */
   height: 100%;
   margin-top: 80px;

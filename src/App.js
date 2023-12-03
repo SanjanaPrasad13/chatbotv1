@@ -9,36 +9,89 @@ const App = () => {
   const [currentOption, setCurrentOption] = useState('All'); // Default option
   const [inputValue, setInputValue] = useState(''); // Added state for input value
   const [isLoading, setIsLoading] = useState(false);
-  const options = ["chitchat", "novel", "all"]; // Your topics
+  const options = ["Chitchat", "All","A Tale of Two Cities","Alice's Adventures in Wonderland",
+            "Dracula","Frankenstein; Or, The Modern Prometheus","Moby Dick; Or, The Whale",
+            "Pride and Prejudice","The Adventures of Sherlock Holmes",
+            "The Adventures of Tom Sawyer, Complete ", "The Picture of Dorian Gray",
+              "Wuthering Heights"]; // Your topics
 
-  const handleSendMessage = async (messageText) => {
-    if (messageText.trim()) {
-      const messagePayload = {
-        "query_type": currentOption,
-        "question": messageText
-      };
-      setMessages(prevMessages => [...prevMessages, { text: messageText, sender: 'user' }]);
-      setIsLoading(true);
+  // const handleSendMessage = async (messageText) => {
+  //   if (messageText.trim()) {
+  //     const messagePayload = {
+  //       "query_type": currentOption,
+  //       "question": messageText
+  //     };
+  //     setMessages(prevMessages => [...prevMessages, { text: messageText, sender: 'user' }]);
+  //     setIsLoading(true);
+  //
+  //     try {
+  //       const response = await fetch("http://34.125.9.200:9999/execute_query", {
+  //         method: "POST",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //         body: JSON.stringify(messagePayload),
+  //       });
+  //       const data = await response.json()
+  //       setMessages(prevMessages => [...prevMessages, { text: data['answer'], sender: 'bot' }]);
+  //     } catch (error) {
+  //       console.error('Error:', error);
+  //       setMessages(prevMessages => [...prevMessages, { text: 'Error fetching response', sender: 'bot' }]);
+  //     } finally {
+  //       setIsLoading(false);
+  //       setInputValue(''); // Clear the input after sending the message
+  //     }
+  //   }
+  // };
 
-      try {
-        const response = await fetch("http://34.125.9.200:9999/execute_query", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(messagePayload),
-        });
-        const data = await response.json()
-        setMessages(prevMessages => [...prevMessages, { text: data['answer'], sender: 'bot' }]);
-      } catch (error) {
-        console.error('Error:', error);
-        setMessages(prevMessages => [...prevMessages, { text: 'Error fetching response', sender: 'bot' }]);
-      } finally {
-        setIsLoading(false);
-        setInputValue(''); // Clear the input after sending the message
-      }
+    const handleSendMessage = async (messageText) => {
+  if (messageText.trim()) {
+    // Initialize the payload with common properties
+     let queryType = currentOption.toLowerCase();
+    if (queryType !== 'chitchat' && queryType !== 'all') {
+      queryType = 'novel';
     }
-  };
+
+    // Prepare the payload with conditional novel_name
+    const messagePayload = {
+      question: messageText,
+      query_type: queryType, // query_type will be 'chitchat', 'all', or 'novel'
+      novel_name: queryType === 'novel' ? currentOption : "", // Send the novel name only if a novel is selected
+    };
+
+    // If a specific novel is selected, assign its name to novel_name
+    if (options.includes(currentOption) && currentOption !== 'All' && currentOption !== 'Chit Chat') {
+      messagePayload.novel_name = currentOption;
+    }
+
+    setMessages(prevMessages => [...prevMessages, { text: messageText, sender: 'user' }]);
+    setIsLoading(true);
+
+    try {
+      const response = await fetch("http://34.125.9.200:9999/execute_query", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(messagePayload),
+      });
+        console.log(messagePayload);
+      if (!response.ok) {
+        throw new Error("HTTP error! status: ${response.status}");
+      }
+
+      const data = await response.json();
+      setMessages(prevMessages => [...prevMessages, { text: data.answer, sender: 'bot' }]);
+    } catch (error) {
+      console.error('Error:', error);
+      setMessages(prevMessages => [...prevMessages, { text: 'Error fetching response', sender: 'bot' }]);
+    } finally {
+      setIsLoading(false);
+      setInputValue(''); // Clear the input after sending the message
+    }
+  }
+};
+
 
   const handleOptionSelect = (option) => {
     setCurrentOption(option); // Update the current option
@@ -70,6 +123,8 @@ const App = () => {
               ))}
             </div>
           </Grid>
+
+
         </Grid>
       </Paper>
     </Container>
