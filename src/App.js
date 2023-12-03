@@ -22,8 +22,15 @@ const App = () => {
       setIsLoading(true);
 
       try {
-        const response = await axios.post('http://34.125.9.200:9999/execute_query', messagePayload);
-        setMessages(prevMessages => [...prevMessages, { text: response.data.text, sender: 'bot' }]);
+        const response = await fetch("http://34.125.9.200:9999/execute_query", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(messagePayload),
+        });
+        const data = await response.json()
+        setMessages(prevMessages => [...prevMessages, { text: data['answer'], sender: 'bot' }]);
       } catch (error) {
         console.error('Error:', error);
         setMessages(prevMessages => [...prevMessages, { text: 'Error fetching response', sender: 'bot' }]);
