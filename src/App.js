@@ -1,6 +1,5 @@
-// App.js
-
 import React, { useState } from 'react';
+import axios from 'axios';
 import ChatWindow from './components/ChatWindow';
 import InputBox from './components/InputBox';
 import { Container, Paper, Typography, Grid } from '@mui/material';
@@ -11,36 +10,27 @@ const App = () => {
   const [currentOption, setCurrentOption] = useState('All'); // Default option
   const [inputValue, setInputValue] = useState(''); // Added state for input value
   const [isLoading, setIsLoading] = useState(false);
-  const options = ["Chit Chat",
-    "Novel"]; // Your topics
+  const options = ["Chit Chat", "Novel", "All"]; // Your topics
 
-  const handleSendMessage = (messageText) => {
+  const handleSendMessage = async (messageText) => {
     if (messageText.trim()) {
       const messagePayload = {
-        topic: currentOption, // Include the selected topic
+        topic: currentOption,
         message: messageText
       };
       setMessages(prevMessages => [...prevMessages, { text: messageText, sender: 'user' }]);
       setIsLoading(true);
-      // Fetch call to the Flask server
-      console.log('Sending to backend:', messagePayload);
-      fetch('http://127.0.0.1:5000/message', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(messagePayload) // Send the payload as JSON
-      })
-      .then(response => response.json())
-      .then(data => {
-        setMessages(prevMessages => [...prevMessages, { text: data.text, sender: 'bot' }]);
-        setIsLoading(false);
-      })
-      .catch((error) => {
+
+      try {
+        const response = await axios.post('http://34.125.9.200:9999/execute_query', messagePayload);
+        setMessages(prevMessages => [...prevMessages, { text: response.data.text, sender: 'bot' }]);
+      } catch (error) {
         console.error('Error:', error);
+        setMessages(prevMessages => [...prevMessages, { text: 'Error fetching response', sender: 'bot' }]);
+      } finally {
         setIsLoading(false);
-      });
-      setInputValue(''); // Clear the input after sending the message
+        setInputValue(''); // Clear the input after sending the message
+      }
     }
   };
 
@@ -64,8 +54,8 @@ const App = () => {
           <Grid item xs={3} style={{ overflowY: 'auto' }}>
             <div className="options-panel">
               {options.map((option, index) => (
-                <div // Opening div tag was missing here
-                  key={index} // `key` prop should be here
+                <div
+                  key={index}
                   className={`option ${currentOption === option ? 'selected' : ''}`}
                   onClick={() => handleOptionSelect(option)}
                 >
