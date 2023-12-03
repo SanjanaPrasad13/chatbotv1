@@ -15,8 +15,8 @@ const App = () => {
   const handleSendMessage = async (messageText) => {
     if (messageText.trim()) {
       const messagePayload = {
-        topic: currentOption,
-        message: messageText
+        "query_type": currentOption,
+        "question": messageText
       };
       setMessages(prevMessages => [...prevMessages, { text: messageText, sender: 'user' }]);
       setIsLoading(true);
