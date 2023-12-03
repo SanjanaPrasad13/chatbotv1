@@ -9,7 +9,7 @@ const App = () => {
   const [currentOption, setCurrentOption] = useState('All'); // Default option
   const [inputValue, setInputValue] = useState(''); // Added state for input value
   const [isLoading, setIsLoading] = useState(false);
-  const options = ["Chit Chat", "Novel", "All"]; // Your topics
+  const options = ["chitchat", "novel", "all"]; // Your topics
 
   const handleSendMessage = async (messageText) => {
     if (messageText.trim()) {
