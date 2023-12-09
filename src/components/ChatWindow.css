@@ -60,3 +60,38 @@
 .loading-indicator {
   font-style: italic;
 }
+
+.message-bubble.bot {
+  position: relative;
+}
+
+.star-rating {
+  position: absolute;
+  bottom: -25px; /* Adjust this value as needed */
+  left: 0;
+}
+
+.message-bubble.bot {
+  /* No changes here, just ensure it's flex or block to allow children to display below */
+}
+
+.star-rating {
+  display: block; /* Display block to ensure it goes below the message */
+  margin-top: 8px; /* Adjust this value as needed to match your design */
+}
+.star-rating {
+  display: block; /* or flex */
+  margin-top: 5px; /* Adjust based on your design */
+  /* any other styles needed to align the stars */
+}
+/* ChatWindow.css */
+.star-rating {
+  display: flex;
+  justify-content: flex-start; /* Align stars to the start of the container */
+  cursor: pointer; /* Change cursor to pointer when hovering over the stars */
+}
+
+.star {
+  margin-right: 5px;
+  cursor: pointer; /* Add some space between the stars */
+}
