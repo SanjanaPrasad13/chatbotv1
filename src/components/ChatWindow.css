@@ -21,13 +21,12 @@
 
 .user {
   align-self: flex-end;
-  background-color: #888888; /* Dark blue */
+  background-color: #888888;
   color: BLACK;
 }
 
 .bot {
   align-self: flex-start;
-  /*background-color: ; !* Light blue *!*/
   color: black;
   border:1px solid black;
 }
@@ -36,7 +35,7 @@
   width: 40px;
   height: 40px;
   margin-right: 10px;
-  border-radius: 50%; /* Circular avatar */
+  border-radius: 50%;
 }
 
 .message-bubble.user {
@@ -45,7 +44,7 @@
 }
 
 .user-avatar {
-  width: 30px; /* Set your desired size */
+  width: 30px;
   height: 30px;
   margin-right: 10px;
   border-radius: 15px;
@@ -67,7 +66,7 @@
 
 .star-rating {
   position: absolute;
-  bottom: -25px; /* Adjust this value as needed */
+  bottom: -25px;
   left: 0;
 }
 
@@ -76,22 +75,21 @@
 }
 
 .star-rating {
-  display: block; /* Display block to ensure it goes below the message */
-  margin-top: 8px; /* Adjust this value as needed to match your design */
+  display: block;
+  margin-top: 8px;
 }
 .star-rating {
-  display: block; /* or flex */
+  display: block;
   margin-top: 5px; /* Adjust based on your design */
-  /* any other styles needed to align the stars */
+
 }
 /* ChatWindow.css */
 .star-rating {
   display: flex;
-  justify-content: flex-start; /* Align stars to the start of the container */
-  cursor: pointer; /* Change cursor to pointer when hovering over the stars */
+  justify-content: flex-start;
+  cursor: pointer;
 }
 
 .star {
-  margin-right: 5px;
-  cursor: pointer; /* Add some space between the stars */
+  margin-right: 5px;/* Add some space between the stars */
 }

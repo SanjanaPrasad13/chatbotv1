@@ -1,6 +1,8 @@
   import React, { useState } from 'react';
   import ChatWindow from './components/ChatWindow';
   import InputBox from './components/InputBox';
+  import { Button } from '@mui/material';
+  import Legend from "./components/Legend";
   import { Container, Paper, Typography, Grid } from '@mui/material';
   import './App.css';
 
@@ -15,36 +17,7 @@
               "The Adventures of Tom Sawyer, Complete", "The Picture of Dorian Gray",
                 "Wuthering Heights"]; // Your topics
 
-    // const handleSendMessage = async (messageText) => {
-    //   if (messageText.trim()) {
-    //     const messagePayload = {
-    //       "query_type": currentOption,
-    //       "question": messageText
-    //     };
-    //     setMessages(prevMessages => [...prevMessages, { text: messageText, sender: 'user' }]);
-    //     setIsLoading(true);
-    //
-    //     try {
-    //       const response = await fetch("http://34.125.9.200:9999/execute_query", {
-    //         method: "POST",
-    //         headers: {
-    //           "Content-Type": "application/json",
-    //         },
-    //         body: JSON.stringify(messagePayload),
-    //       });
-    //       const data = await response.json()
-    //       setMessages(prevMessages => [...prevMessages, { text: data['answer'], sender: 'bot' }]);
-    //     } catch (error) {
-    //       console.error('Error:', error);
-    //       setMessages(prevMessages => [...prevMessages, { text: 'Error fetching response', sender: 'bot' }]);
-    //     } finally {
-    //       setIsLoading(false);
-    //       setInputValue(''); // Clear the input after sending the message
-    //     }
-    //   }
-    // };
-
-      const handleSendMessage = async (messageText) => {
+    const handleSendMessage = async (messageText) => {
     if (messageText.trim()) {
       // Initialize the payload with common properties
        let queryType = currentOption.toLowerCase();
@@ -59,7 +32,6 @@
         novel_name: queryType === 'novel' ? currentOption : "", // Send the novel name only if a novel is selected
       };
 
-      // If a specific novel is selected, assign its name to novel_name
       if (options.includes(currentOption) && currentOption !== 'All' && currentOption !== 'Chit Chat') {
         messagePayload.novel_name = currentOption;
       }
@@ -82,36 +54,50 @@
 
         const data = await response.json();
         setMessages(prevMessages => [...prevMessages, {
-          text: data.answer, // The bot's response text
+          text: data.answer,
           sender: 'bot',
-          topic_name: data.topic, // Ensure this key matches the key in the response
-          rating: 0 // Initialize rating if you're using it
+          topic_name: data.topic,
+          rating: 0
         }]);
-        // setMessages(prevMessages => [...prevMessages, { text: data.answer, sender: 'bot', rating: 0 }]);
-        // setMessages(prevMessages => [...prevMessages, { text: data.topic, sender: 'bot' }]);
-
         console.log('Response', data);
       } catch (error) {
         console.error('Error:', error);
         setMessages(prevMessages => [...prevMessages, { text: 'Error fetching response', sender: 'bot' }]);
       } finally {
         setIsLoading(false);
-        setInputValue(''); // Clear the input after sending the message
+        setInputValue('');
       }
     }
   };
 
 
     const handleOptionSelect = (option) => {
-      setCurrentOption(option); // Update the current option
+      setCurrentOption(option);
     };
 
     return (
       <Container maxWidth="xl" style={{ padding: 0 }}>
         <div className="header">
+          <Legend/>
           <Typography variant="h4" align="center" style={{ color: 'white' }} fontFamily={"Georgia"}>
             Chatbot
           </Typography>
+          <Button
+              variant="contained"
+              style={{
+                position: 'absolute',
+                top: '25px',
+                right: '100px',
+                fontFamily: 'Georgia, serif',
+                backgroundColor: '#ececec',
+                color: '#4A4A4A',
+                fontWeight: 'bold',
+                textTransform: 'none',
+              }}
+              onClick={() => window.open('http://34.125.9.200:9999/analysis', '_blank')}
+            >
+              Statistics
+            </Button>
         </div>
         <Paper style={{ height: '100vh', display: 'flex', flexDirection: 'row' }}>
           <Grid container style={{ height: '100%' }}>
