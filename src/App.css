@@ -1,43 +1,42 @@
 .containerStyle {
-  background-color: #F8F9FA; /* A light grey background, similar to ChatGPT */
+  background-color: #F8F9FA;
 }
 
 body {
   font-family: 'Georgia', 'Verdana', sans-serif;
-  background-color: #FFFFFF; /* White background for content */
+  background-color: #FFFFFF;
 }
 
-/* Chat Window and Header Styles */
 .main-paper {
   display: flex;
   flex-direction: column;
-  height: 90vh; /* Adjust the height as needed */
-  background-color: #FFFFFF; /* White background for the chat area */
+  height: 90vh;
+  background-color: #FFFFFF;
 }
 
 
  .header {
-  position: fixed; /* Makes the header stay at the top of the page */
-  top: 0; /* Aligns the header to the top edge of the page */
+  position: fixed;
+  top: 0;
   left: 0;
   right: 0;
-  background-color: #4A4A4A; /* Dark grey */
-  color: #FFFFFF; /* White text */
+  background-color: #4A4A4A;
+  color: #FFFFFF;
   padding: 20px;
   text-align: center;
-  z-index: 1000; /* Ensures the header is above other content */
+  z-index: 1000;
 }
 
 
 .option:hover {
-  background-color: #B0BEC5; /* A lighter shade of grey for hover effect */
+  background-color: #B0BEC5;
 }
 
 .options-header {
   font-weight: bold;
   padding: 9px;
   text-align: center;
-  color: #4A4A4A; /* Dark grey text for headers within the options panel */
+  color: #4A4A4A;
 }
 
 .options-panel {
@@ -45,7 +44,7 @@ body {
   flex-direction: column;
   padding: 10px;
   background-color: #ECEFF1;
-  overflow-y: auto; /* Scrollable options */
+  overflow-y: auto;
   height: 100%;
   margin-top: 80px;
 }
@@ -54,20 +53,20 @@ body {
   padding: 10px;
   font-weight: bold;
   cursor: pointer;
-  border: 1px solid #CFD8DC; /* Light grey border for options */
-  margin-bottom: 10px; /* Space between options */
+  border: 1px solid #CFD8DC;
+  margin-bottom: 10px;
   border-radius: 5px;
   text-align: center;
-  background-color: #FFFFFF; /* White background for options */
-  color: #4A4A4A; /* Dark grey color for option text */
+  background-color: #FFFFFF;
+  color: #4A4A4A;
 }
 
 .option.selected {
   font-weight: bold;
   background-color: #4A4A4A;
-  color: #FFFFFF; /* White text for selected option */
+  color: #FFFFFF;
 }
 
 .chat-window {
-  margin-top: 60px; /* Add margin-top that is equal or greater than the header's height */
+  margin-top: 60px;
 }

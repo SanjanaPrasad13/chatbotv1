@@ -1,8 +1,6 @@
-// src/components/OutputBox.js
-
 import React from 'react';
 import { Box } from '@mui/material';
-import Message from './Message'; // Reusing the Message component
+import Message from './Message';
 
 const OutputBox = ({ messages }) => {
   return (

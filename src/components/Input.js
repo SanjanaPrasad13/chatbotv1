@@ -1,5 +1,3 @@
-// InputBox.js
-
 const InputBox = ({ onSendMessage, inputValue, setInputValue }) => {
   const handleInputChange = (e) => {
     setInputValue(e.target.value);

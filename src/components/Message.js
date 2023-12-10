@@ -1,5 +1,3 @@
-// Message.js
-
 import React from 'react';
 import { ListItem, ListItemText, Paper } from '@mui/material';
 

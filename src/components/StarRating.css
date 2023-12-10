@@ -1,8 +1,8 @@
 .message-bubble.bot {
-  /* No changes here, just ensure it's flex or block to allow children to display below */
+
 }
 
 .star-rating {
-  display: block; /* Display block to ensure it goes below the message */
-  margin-top: 8px; /* Adjust this value as needed to match your design */
+  display: block;
+  margin-top: 8px;
 }

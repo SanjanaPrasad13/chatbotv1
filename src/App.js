@@ -8,8 +8,8 @@
 
   const App = () => {
     const [messages, setMessages] = useState([]);
-    const [currentOption, setCurrentOption] = useState('All'); // Default option
-    const [inputValue, setInputValue] = useState(''); // Added state for input value
+    const [currentOption, setCurrentOption] = useState('Chitchat');
+    const [inputValue, setInputValue] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const options = ["Chitchat", "All","A Tale of Two Cities","Alice's Adventures in Wonderland",
               "Dracula","Frankenstein; Or, The Modern Prometheus","Moby Dick; Or, The Whale",
@@ -19,17 +19,15 @@
 
     const handleSendMessage = async (messageText) => {
     if (messageText.trim()) {
-      // Initialize the payload with common properties
        let queryType = currentOption.toLowerCase();
       if (queryType !== 'chitchat' && queryType !== 'all') {
         queryType = 'novel';
       }
 
-      // Prepare the payload with conditional novel_name
       const messagePayload = {
         question: messageText,
-        query_type: queryType, // query_type will be 'chitchat', 'all', or 'novel'
-        novel_name: queryType === 'novel' ? currentOption : "", // Send the novel name only if a novel is selected
+        query_type: queryType,
+        novel_name: queryType === 'novel' ? currentOption : "",
       };
 
       if (options.includes(currentOption) && currentOption !== 'All' && currentOption !== 'Chit Chat') {
@@ -118,8 +116,6 @@
                 ))}
               </div>
             </Grid>
-
-
           </Grid>
         </Paper>
       </Container>

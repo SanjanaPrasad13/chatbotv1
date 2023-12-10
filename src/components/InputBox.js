@@ -1,5 +1,3 @@
-// InputBox.js
-
 import React from 'react';
 import IconButton from '@mui/material/IconButton';
 import SendIcon from '@mui/icons-material/Send';

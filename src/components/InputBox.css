@@ -1,5 +1,3 @@
-/* InputBox.css */
-
 .input-box {
   display: flex;
   align-items: center;
@@ -27,8 +25,6 @@
   border-radius: 5px;
 }
 
-/* App.css */
-
 .input-box {
   position: fixed;
   bottom: 0;
@@ -37,7 +33,7 @@
   display: flex;
   align-items: center;
   padding: 10px;
-  background-color: white; /* Or any other color that fits your design */
+  background-color: white;
 }
 
 .input-field {
@@ -49,19 +45,16 @@
 }
 
 .send-button {
-  /* Styling for the send button if needed */
 }
 
 .options-container {
-  margin: 10px; /* Space for the header */
+  margin: 10px;
 }
 
 .option {
-  margin-bottom: 10px; /* Adds space between options */
-  /* Rest of the styles */
+  margin-bottom: 10px;
 }
 
-/* Add styles for the header above the options */
 .options-header {
   padding: 10px;
   font-weight: bold;

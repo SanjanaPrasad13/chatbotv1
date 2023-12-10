@@ -1,10 +1,9 @@
 import React from 'react';
-import { FaStar } from 'react-icons/fa'; // Ensure react-icons is installed
+import { FaStar } from 'react-icons/fa';
 
 const StarRating = ({ currentRating, onRating }) => {
-  // Function to handle star click
   const handleRating = (rate) => {
-    onRating(rate); // Call the onRating function with the new rating
+    onRating(rate);
   };
 
   return (
@@ -18,10 +17,10 @@ const StarRating = ({ currentRating, onRating }) => {
               name="rating"
               value={ratingValue}
               onClick={() => handleRating(ratingValue)}
-              style={{ display: 'none' }} // Hide the radio input
+              style={{ display: 'none' }}
             />
             <FaStar
-              className="star" // Add a class for styling if needed
+              className="star"
               size={20}
               color={ratingValue <= currentRating ? "#ffc107" : "#e4e5e9"}
               onMouseEnter={() => {}}

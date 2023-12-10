@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import StarRating from './StarRating';
 import './ChatWindow.css';
 
-const ChatWindow = ({ messages = [], setMessages, isLoading }) => { // Default messages to an empty array
+const ChatWindow = ({ messages = [], setMessages, isLoading }) => {
   const endOfMessagesRef = useRef(null);
 
   useEffect(() => {
@@ -21,7 +21,6 @@ const handleRatingChange = (newRating, messageIndex) => {
 
   setMessages(newMessages);
 
-  // Now call sendFeedbackToAPI with the relevant rating and the specific message
     const ratedMessage = newMessages[messageIndex];
     sendFeedbackToAPI(newRating >= 3 ? 1 : 0, ratedMessage);
 };
@@ -29,16 +28,15 @@ const handleRatingChange = (newRating, messageIndex) => {
 
 
   const sendFeedbackToAPI = (relevant, message) => {
-  console.log("Message object before sending feedback:", message); // This should show the message object
+  console.log("Message object before sending feedback:", message);
 
   const payload = {
     relevant: relevant,
-    topic_name: message.topic_name, // Now we're using topic_name
+    topic_name: message.topic_name,
   };
 
   console.log("Sending to backend:", payload);
 
-  // Example API call (adjust the URL and method as needed)
   fetch('http://34.125.9.200:9999/relevance', {
     method: 'POST',
     headers: {
@@ -67,13 +65,12 @@ const handleRatingChange = (newRating, messageIndex) => {
     {msg.sender === 'bot' && (
     <div className="star-rating">
       <StarRating currentRating={msg.rating} onRating={(rating) => handleRatingChange(rating, index)} />
-      {/*<StarRating currentRating={msg.rating} onRating={(rating) => handleRatingChange(rating, index)} />*/}
     </div>
   )}
   </div>
 ))}
 
-      <div ref={endOfMessagesRef} /> {/* Invisible element at the end of the messages */}
+      <div ref={endOfMessagesRef} />
       {isLoading && (
         <div className="message-bubble bot loading">
           <div className="loading-indicator">Loading...</div>
